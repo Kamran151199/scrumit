@@ -1,0 +1,8 @@
+apache-airflow==2.6.0
+apache-airflow-providers-celery==3.1.0
+apache-airflow-providers-google==10.0.0
+bandit==1.7.5
+build==0.10.0
+pipreqs==0.4.13
+pre-commit==3.3.1
+pytest==7.3.1
