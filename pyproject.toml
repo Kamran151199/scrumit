@@ -15,7 +15,10 @@ requires-python = ">=3.10.9"
 dynamic = ["dependencies"]
 
 [tool.setuptools.dynamic]
-dependencies = { file = ["requirements.txt"] }
+dependencies = { file = ["requirements.chill"] }
+
+[tool.setuptools.package-data]
+scrumit = ["default_examples.json"]
 
 [project.scripts]
 scrumit = "scrumit.__main__:main"
