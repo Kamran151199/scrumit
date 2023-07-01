@@ -88,3 +88,13 @@ if __name__ == "__main__":
 ```
 Output(stories=[UserStory(task='The matching algorithm should provide more relevant matches based on user preferences and interests.', story='"As a user, I want the matching algorithm to provide more relevant matches based on my preferences and interests so that I get accurate results."'), UserStory(task='The app should no longer experience any unexpected app shutdowns.', story='"As a user I want to be able to use the app without any unexpected app shutdowns so I can have a reliable experience."'), UserStory(task='The messaging system should be optimized to ensure faster and more reliable delivery of messages.', story='Paraphrase: "As a user I want to be able to have a messaging system that is optimized for faster and more reliable delivery of messages so I can communicate efficiently."'), UserStory(task='The interface should be refined to provide a more polished and visually appealing experience.', story='"As a user I want the interface to be refined to provide a more polished and visually appealing experience so I have a better user experience."'), UserStory(task='The developers should actively engage with their user community and identify and fix any reported issues.', story='Scrum Story: "As a user I want the developers to actively engage with the user community and to identify and fix any issues I report so I can continue to have an enjoyable experience using the product."')])
 ```
+
+
+## Notes
+
+### Improving outputs
+
+- Provide a paraphraser global examples see [sample_paraphraser_examples.json](sample_paraphraser_examples.json)
+- Provide a recognizer global examples see [sample_recognizer_examples.json](sample_recognizer_examples.json)
+
+This will improve the quality of the outputs by providing more context to the model about your domain.
