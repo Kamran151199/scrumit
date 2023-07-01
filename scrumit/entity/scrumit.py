@@ -29,7 +29,7 @@ class UserStory(BaseModel):
     This class contains the user story for the scrumit application.
     """
 
-    original_text: str = Field(..., description="Original text - excerpt from the input text.")
+    task: str = Field(..., description="Original text - excerpt from the input text.")
     story: str = Field(..., description="User story text.")
 
 

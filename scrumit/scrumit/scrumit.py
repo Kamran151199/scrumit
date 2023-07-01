@@ -2,35 +2,21 @@
 This module contains the main class for the scrumit application.
 """
 
-import abc
-
-from scrumit.entity import scrumit as entities
-from scrumit.paraphraser.base import ParaphraserBase
-from scrumit.recognizer.base import RecognizerBase
-
-
-class ScrumitBase(abc.ABC):
-    """
-    This is an abstract class for the scrumit application.
-    """
-
-    @abc.abstractmethod
-    def convert(self, text: entities.Input) -> entities.Output:
-        """
-        This method converts the input text to the output text.
-        """
-        ...
+from scrumit.entity import paraphraser as paraphraser_entities, recognizer as recognizer_entities, scrumit as entities
+from scrumit.paraphraser import base as paraphraser_base, exceptions as paraphraser_exceptions
+from scrumit.recognizer import base as recognizer_base, exceptions as recognizer_exceptions
+from scrumit.scrumit import base, exceptions as exceptions
 
 
-class Scrumit(ScrumitBase):
+class Scrumit(base.ScrumitBase):
     """
     This class is the main class for the scrumit application.
     """
 
     def __init__(
         self,
-        recognizer: RecognizerBase,
-        paraphraser: ParaphraserBase,
+        recognizer: recognizer_base.RecognizerBase,
+        paraphraser: paraphraser_base.ParaphraserBase,
     ):
         """
         This method initializes the scrumit application.
@@ -43,8 +29,26 @@ class Scrumit(ScrumitBase):
         self.recognizer = recognizer
         self.paraphraser = paraphraser
 
-    def convert(self, text: entities.Input) -> entities.Output:
+    def convert(self, inp: entities.Input) -> entities.Output:
         """
-        This method converts the input text to the output text.
+        This method converts the input text (conversation trascript) to the output text (user stories).
         """
-        ...
+
+        user_stories: list[entities.UserStory] = []
+        try:
+            ner_output = self.recognizer.recognize(
+                recognizer_entities.RecognizerInput(text=inp.text, domain=inp.domain, examples=inp.ner_examples)
+            )
+        except recognizer_exceptions.RecognizerException as e:
+            raise exceptions.ScrumitException(f"Could not recognize entities: {e.message}")
+        for task in ner_output.tasks:
+            try:
+                paraphrased = self.paraphraser.paraphrase(
+                    paraphraser_entities.ParaphraserInput(text=task.description, examples=inp.paraphraser_examples)
+                )
+                user_stories.append(entities.UserStory(task=task.description, story=paraphrased.user_story))
+            except paraphraser_exceptions.ParaphraserException as e:
+                raise exceptions.ScrumitException(
+                    f"Could not paraphrase the task {task.description}. Reason: {e.message}"
+                )
+        return entities.Output(stories=user_stories)
