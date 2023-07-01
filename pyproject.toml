@@ -9,11 +9,12 @@ readme = "README.md"
 classifiers = [
     "Programming Language :: Python :: 3.10",
     "Operating System :: OS Independent",
+    "License :: OSI Approved :: GNU General Public License v3 (GPLv3)",
 ]
 version = "0.0.1"
 requires-python = ">=3.10.9"
 dynamic = ["dependencies"]
-license = "GNU GPLv3"
+license = { file = "LICENSE" }
 
 [tool.setuptools.dynamic]
 dependencies = { file = ["requirements.chill"] }
