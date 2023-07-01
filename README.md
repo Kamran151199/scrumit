@@ -6,7 +6,7 @@ Scrumit is a utility package that converts raw text to scrum user stories
 
 ## Requirements
 
-- Python 3.10+
+- Python 3.10.9+
 
 ## Installation
 
