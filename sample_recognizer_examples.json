@@ -1,38 +1,14 @@
 [
   {
-    "raw": "One issue I noticed is that when I try to submit a new blog post,\nthe form doesn't validate properly. \nIt allows me to submit empty fields without displaying any error messages.\nWe should add proper form validation to ensure all\nrequired fields are filled in before submission. I'll take care of that.",
-    "task": "A proper form validation should be added to ensure all required fields are filled in before submission.",
+    "raw": "Yes, I've noticed that the payment system sometimes takes longer than expected to process transactions. It's intermittent, but it's causing delays and frustration for users.",
+    "task": "Intermittent delays in the payment system's transaction processing should be investigated.",
     "persona": "User",
     "deadline": "Unknown"
   },
   {
-    "raw": "The layout breaks on smaller screens, making it difficult to read and navigate through the blog posts. We need to make sure that the investors do not have this bad experience on next week's demo. We definitely need to improve the mobile responsiveness. I'll review the CSS styles and make the necessary adjustments to ensure a better user experience on smaller screens.",
+    "raw": "Along with the UI, we also need to consider error handling. Currently, when there's an issue with a payment transaction, the error messages are generic and unhelpful. It makes it difficult for users to troubleshoot and fix the problem themselves.",
     "persona": "User",
     "deadline": "Next week",
-    "task": "The layout should not break on smaller screens, making it difficult to read and navigate through the blog posts."
-  },
-  {
-    "raw": "One more bug I came across is related to the comment section. Sometimes, when I submit a comment, it doesn't appear immediately.I need to refresh the page to see my comment.That's an annoying bug indeed. We should implement real-time updates for the comments section so that newly submitted comments appear without needing a page refresh.",
-    "persona": "User",
-    "deadline": "Unknown",
-    "task": "Newly submitted comments should appear without needing a page refresh in the comment section."
-  },
-  {
-    "raw": "Another bug I found is related to the pagination feature.When I navigate to the second page of blog posts, the URL doesn't update, and I can't bookmark or share the link to that specific page.Ah, that's an important bug to fix. We should update the URL dynamically whenever the user changes the page. This has to be fixed by 20th of May.",
-    "persona": "User",
-    "deadline": "20th of May",
-    "task": "The URL should update dynamically whenever the user changes the page."
-  },
-  {
-    "raw": "Guys, the metrics are not calculated correctly.Out analytics team is waiting for the fix this Friday.",
-    "persona": "Analytics team",
-    "deadline": "This Friday",
-    "task": "The metrics should be calculated correctly."
-  },
-  {
-    "raw": "Guys, the button is not working in the header page.Users are not able to click on the button and see the page. Please fix it ASAP.",
-    "persona": "User",
-    "deadline": "ASAP",
-    "task": "The button should be working in the header page."
+    "task": "Error handling for payment transactions should be improved to help users troubleshoot."
   }
 ]

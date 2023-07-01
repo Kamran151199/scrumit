@@ -10,7 +10,7 @@ from scrumit.config import settings
 from scrumit.entity.scrumit import Input
 from scrumit.paraphraser.backends import ParaphraserOpenAI
 from scrumit.recognizer.backends import RecognizerOpenAI
-from scrumit.scrumit import Scrumit
+from scrumit.scrumer import Scrumer
 
 
 def main():
@@ -29,7 +29,7 @@ def main():
     paraphraser = ParaphraserOpenAI(client)
 
     # scrumit
-    scrumit = Scrumit(recognizer, paraphraser)
+    scrumer = Scrumer(recognizer, paraphraser)
     conversation = Input(
         text="""
             Hey, have you heard about the latest bug fixes in the dating app, MatchMate?
@@ -49,7 +49,7 @@ def main():
             """,
         domain="software",
     )
-    outputs = scrumit.convert(conversation)
+    outputs = scrumer.convert(conversation)
     pprint(outputs)
 
 

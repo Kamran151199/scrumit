@@ -5,10 +5,10 @@ This module contains the main class for the scrumit application.
 from scrumit.entity import paraphraser as paraphraser_entities, recognizer as recognizer_entities, scrumit as entities
 from scrumit.paraphraser import base as paraphraser_base, exceptions as paraphraser_exceptions
 from scrumit.recognizer import base as recognizer_base, exceptions as recognizer_exceptions
-from scrumit.scrumit import base, exceptions as exceptions
+from scrumit.scrumer import base, exceptions as exceptions
 
 
-class Scrumit(base.ScrumitBase):
+class Scrumer(base.ScrumerBase):
     """
     This class is the main class for the scrumit application.
     """

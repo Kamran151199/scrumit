@@ -6,7 +6,7 @@ import abc
 from scrumit.entity import scrumit as entities
 
 
-class ScrumitBase(abc.ABC):
+class ScrumerBase(abc.ABC):
     """
     This is an abstract class for the scrumit application.
     """

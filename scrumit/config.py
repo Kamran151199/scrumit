@@ -4,6 +4,7 @@ This module contains the configuration class for the scrumit application.
 import os
 from pathlib import Path
 
+import dotenv
 from pydantic import BaseSettings
 from pydantic.fields import Field
 
@@ -16,8 +17,8 @@ class Config(BaseSettings):
     """
 
     class Config:
+        env_file = dotenv.find_dotenv(usecwd=True)
         env_file_encoding = "utf-8"
-        env_prefix = "SCRUMIT_"
 
     openai_api_key: str = Field(
         None, env="OPENAI_API_KEY", description="Openai API key. Required if using OpenAI backend."

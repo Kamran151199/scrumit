@@ -4,9 +4,11 @@ This module contains the Recognizer class for the scrumit application using Open
 Recognizer is implementation of NER (Named Entity Recognition) using OpenAI API.
 It is used to recognize entities (tasks) in the input text and convert them to the output text (user stories).
 """
-import ast
+
+import re as regex
 from typing import Any
 
+import openai.error
 from promptify import Prompter
 from pydantic import parse_file_as
 
@@ -71,20 +73,24 @@ class RecognizerOpenAI(base.RecognizerBase):
             ]
             for example in examples
         ]
+        try:
+            output = self.prompter.fit(
+                template_name=self.template,
+                domain=text.domain,
+                text_input=text.text,
+                labels=["Task", "Persona", "Deadline"],
+                examples=prompter_examples,
+            )
+        except openai.error.OpenAIError as exc:
+            raise exceptions.RecognizerException(message=f"Recognizer backend failed: {exc}")
 
-        output = self.prompter.fit(
-            template_name=self.template,
-            domain=text.domain,
-            text_input=text.text,
-            labels=["Task", "Persona", "Deadline"],
-            examples=prompter_examples,
-        )
-        output_text = ast.literal_eval(output["text"])
+        # [hot-fix]
+        output_text = self.__parse_output(output["text"])
+
         if not output_text or not isinstance(output_text, list):
             return entities.RecognizerOutput(tasks=results)
 
-        recognized_entities = output_text[0] if len(output_text) > 0 else []
-        for re in recognized_entities:
+        for re in output_text:
             if re.get("Task") is not None:
                 results.append(
                     entities.RecognizerTask(
@@ -120,3 +126,19 @@ class RecognizerOpenAI(base.RecognizerBase):
             except Exception as exc:
                 exceptions.RecognizerSerializerException(message=f"Failed to parse examples JSON: {exc}")
         return input_examples + self.default_examples + self.ud_examples
+
+    # [hot-fix]
+    @staticmethod
+    def __parse_output(text: str) -> list[dict[str, str]]:
+        """
+        This method parses the output text from the Prompter.
+        :param text:
+        :return:
+        """
+        pattern = r"\{'Task': '([^']*)', 'Persona': '([^']*)', 'Deadline': '([^']*)'\}"
+        matches = regex.finditer(pattern, text)
+        tasks = []
+        for match in matches:
+            task = {"Task": match.group(1), "Persona": match.group(2), "Deadline": match.group(3)}
+            tasks.append(task)
+        return tasks
