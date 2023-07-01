@@ -28,9 +28,6 @@ from scrumit.scrumer import Scrumer
 
 
 def main():
-    if not settings.openai_api_key:
-        raise ValueError("OpenAI API key must be provided to use the OpenAI backend.")
-
     openai.api_key = settings.openai_api_key
     model = OpenAI(settings.openai_api_key)
 
