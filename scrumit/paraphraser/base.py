@@ -15,7 +15,7 @@ class ParaphraserBase(abc.ABC):
     """
 
     @abc.abstractmethod
-    def paraphrase(self, text: entities.ParaphraserInput) -> entities.ParaphraserOutput:
+    def paraphrase(self, inp: entities.ParaphraserInput, **kwargs) -> entities.ParaphraserOutput:
         """
         This method paraphrases the input text to the output text.
         """

@@ -1,5 +1,5 @@
 """
-This module contains the example of how to use the recognizer.
+This module contains the example of how to use the recognizer with the OpenAI backend.
 """
 
 from pprint import pprint
@@ -8,13 +8,16 @@ from promptify import OpenAI, Prompter
 
 from scrumit.config import settings
 from scrumit.entity.recognizer import RecognizerInput
-from scrumit.recognizer.recognizer import Recognizer
+from scrumit.recognizer.backends import RecognizerOpenAI
 
 
 def main():
+    if not settings.openai_api_key:
+        raise ValueError("OpenAI API key must be provided to use the OpenAI backend.")
+
     model = OpenAI(settings.openai_api_key)
     prompter = Prompter(model)
-    recognizer = Recognizer(model, prompter)
+    recognizer = RecognizerOpenAI(model, prompter)
     recognizer_input = RecognizerInput(
         text="""
         Hey, have you heard about the latest bug fixes in the dating app, MatchMate?

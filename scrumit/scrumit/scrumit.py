@@ -4,8 +4,9 @@ This module contains the main class for the scrumit application.
 
 import abc
 
-import config
-from entity import scrumit as entities
+from scrumit.entity import scrumit as entities
+from scrumit.paraphraser.base import ParaphraserBase
+from scrumit.recognizer.base import RecognizerBase
 
 
 class ScrumitBase(abc.ABC):
@@ -26,13 +27,21 @@ class Scrumit(ScrumitBase):
     This class is the main class for the scrumit application.
     """
 
-    def __init__(self, config: config.Config):
+    def __init__(
+        self,
+        recognizer: RecognizerBase,
+        paraphraser: ParaphraserBase,
+    ):
         """
         This method initializes the scrumit application.
 
-        :param config: The configuration for the scrumit application.
+        :param recognizer: The recognizer to use.
+        It is used to recognize entities (tasks) in the input text.
+        :param paraphraser: The paraphraser to use.
+        It is used to paraphrase the recognized entities (tasks) to the output text (user stories).
         """
-        self.config = config
+        self.recognizer = recognizer
+        self.paraphraser = paraphraser
 
     def convert(self, text: entities.Input) -> entities.Output:
         """

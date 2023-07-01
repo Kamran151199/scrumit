@@ -16,7 +16,7 @@ class RecognizerBase(abc.ABC):
     """
 
     @abc.abstractmethod
-    def recognize(self, text: entities.RecognizerInput) -> entities.RecognizerOutput:
+    def recognize(self, text: entities.RecognizerInput, **kwargs) -> entities.RecognizerOutput:
         """
         This method recognizes entities (tasks) in the input text and converts them to the output text (user stories).
         """
