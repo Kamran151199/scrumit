@@ -13,6 +13,7 @@ classifiers = [
 version = "0.0.1"
 requires-python = ">=3.10.9"
 dynamic = ["dependencies"]
+license = "GNU GPLv3"
 
 [tool.setuptools.dynamic]
 dependencies = { file = ["requirements.chill"] }
