@@ -1,0 +1,14 @@
+[
+  {
+    "original_text": "The burger menu should be on the left side of the screen.",
+    "paraphrased_text": "As a user I want to be able to quickly access the burger menu on the left side of the screen so I can navigate to other pages quickly"
+  },
+  {
+    "original_text": "The URL should update dynamically whenever the user changes the page.",
+    "paraphrased_text": "As a user I want to be able to see the URL update dynamically whenever I change the page so I can share the URL with others"
+  },
+  {
+    "original_text": "The metrics should be calculated correctly.",
+    "paraphrased_text": "As a user I want to be able to see the metrics calculated correctly so I can trust the data"
+  }
+]

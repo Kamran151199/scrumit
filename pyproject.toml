@@ -18,7 +18,7 @@ dynamic = ["dependencies"]
 dependencies = { file = ["requirements.chill"] }
 
 [tool.setuptools.package-data]
-scrumit = ["default_examples.json"]
+scrumit = ["default_paraphraser_examples.json", "default_recognizer_examples.json"]
 
 [project.scripts]
-scrumit = "scrumit.__main__:main"
+scrumit = "scrumit.cmd:main"

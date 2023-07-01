@@ -24,7 +24,7 @@ class Config(BaseSettings):
     )
     recognizer_examples_json: str = Field(
         None,
-        env="EXAMPLES_JSON",
+        env="RECOGNIZER_EXAMPLES_JSON",
         description="Path to the examples JSON file."
         "This file contains the examples of"
         "how the tasks should be recognized."
@@ -48,7 +48,7 @@ class Config(BaseSettings):
         description="Default prompt template for the paraphraser when used without examples.",
     )
     default_paraphraser_prompt_template_w_ex = Field(
-        "Paraphrase the following text into a scrum story " 'like this examples:\n%s \n\n Original text: "%s"\n',
+        'Paraphrase the following text into a scrum story like this examples:\n%s \n\n Original text: "%s"\n',
         description="Default prompt template for the paraphraser when used with examples.",
     )
     paraphraser_prompt_template_w_ex: str = Field(
