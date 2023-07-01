@@ -11,13 +11,13 @@ classifiers = [
     "Operating System :: OS Independent",
     "License :: OSI Approved :: GNU General Public License v3 (GPLv3)",
 ]
-version = "0.0.1"
+version = "0.0.3"
 requires-python = ">=3.10.9"
 dynamic = ["dependencies"]
 license = { file = "LICENSE" }
 
 [tool.setuptools.dynamic]
-dependencies = { file = ["requirements.chill"] }
+dependencies = { file = ["requirements.txt"] }
 
 [tool.setuptools.package-data]
 scrumit = ["default_paraphraser_examples.json", "default_recognizer_examples.json"]
